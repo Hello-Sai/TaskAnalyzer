@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart Task Analyzer</title>
+    <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+    <div class="app-shell">
+        <header class="app-header">
+            <div class="title-stack">
+                <h1>Smart Task Analyzer</h1>
+                <p class="subtitle">Blueprint-ready dashboard for Singularium tasks</p>
+            </div>
+            <div class="strategy-bar" data-strategy-bar>
+                <div class="search-box">
+                    <input type="search" id="task-search" placeholder="Search tasks..." aria-label="Search tasks" />
+                    <button class="icon-button" id="refresh-tasks" aria-label="Refresh tasks">
+                        ⟳
+                    </button>
+                    <button class="danger-button" id="delete-all-tasks" aria-label="Delete all tasks">
+                        Delete All
+                    </button>
+                </div>
+                <div class="badge-group" role="group" aria-label="Strategy toggles">
+                    <button class="badge is-active" data-strategy="smart_balance">Smart Balance</button>
+                    <button class="badge" data-strategy="fastest_wins">Fastest Wins</button>
+                    <button class="badge" data-strategy="high_impact">High Impact</button>
+                    <button class="badge" data-strategy="deadline_driven">Deadline Driven</button>
+                </div>
+            </div>
+            <div class="suggestions-panel" data-suggestions>
+                <p class="placeholder">Suggestions will appear here.</p>
+            </div>
+        </header>
+
+        <main class="app-body">
+            <section class="toolbar">
+                <div class="toolbar-left">
+                    <button id="analyze-trigger" class="primary">
+                        Analyze Tasks
+                    </button>
+                    <button id="suggest-trigger" class="ghost">
+                        Refresh Suggestions
+                    </button>
+                </div>
+                <div class="toolbar-right">
+                    <textarea id="bulk-json" placeholder="Paste JSON array of tasks..."></textarea>
+                    <button id="bulk-upload" class="secondary">
+                        Send Bulk
+                    </button>
+                    <button id="modal-trigger" class="icon-button" aria-label="Show sample payload" data-modal-open>
+                        ⓘ
+                    </button>
+                </div>
+            </section>
+
+            <section class="board-wrapper">
+                <div class="board-tabs" role="tablist">
+                    <button class="board-tab is-active" data-board-tab="active" role="tab" aria-selected="true">
+                        Active Tasks
+                    </button>
+                    <button class="board-tab" data-board-tab="completed" role="tab" aria-selected="false">
+                        Completed Tasks
+                    </button>
+                </div>
+                <div class="board-scroll" data-task-board>
+                    <p class="placeholder">No tasks loaded yet. Click “Analyze Tasks” to begin.</p>
+                </div>
+            </section>
+        </main>
+
+        <button class="floating-button" data-modal-open aria-label="Show sample payload">
+            ⓘ
+        </button>
+
+        <div class="modal hidden" data-modal>
+            <div class="modal-backdrop" data-modal-close></div>
+            <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+                <header class="modal-header">
+                    <h2 id="modal-title">Sample Task JSON</h2>
+                    <button class="icon-button" data-modal-close aria-label="Close modal">✕</button>
+                </header>
+                <pre class="modal-body" id="sample-json"></pre>
+                <footer class="modal-footer">
+                    <button class="secondary" data-modal-close>Close</button>
+                </footer>
+            </div>
+        </div>
+
+        <div class="toast-stack" data-toast-stack></div>
+    </div>
+
+    <script type="module" src="./app.js"></script>
+</body>
+</html>
+
