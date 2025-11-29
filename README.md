@@ -25,7 +25,17 @@ pip install -r requirements.txt
    - `POST /api/tasks/analyze/` – bulk ingest + scoring.
    - `GET /api/tasks/analyze/` – retrieve scored tasks.
    - `GET /api/tasks/suggest/?prioritize=fastest_wins|high_impact|deadline_driven` 
-   
+## Frontend (static server)
+To keep the things isolated I used a static server by NodePackageManager.
+ **(If NPM not exists)** 
+  ```bash
+     sudo apt install npm
+  ```
+**Run the Frontend Server** 
+ ```bash
+     npx serve frontend
+  ```
+**localhost:3000** At localhost In the 3000 port it will be served
 ## Core Logic (Scoring Formula )
 
 The system calculates four scores for every active task: **Urgency**, **Effort**, **Dependency**, and **Importance**. Importance is given by the user(Editable at later). 
